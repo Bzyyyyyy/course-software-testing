@@ -1,0 +1,116 @@
+Running 4 tests using 1 worker
+[black-box-02] sidebar buttons named "Personal rename target [team18-mwxg4gi7-w0-2]" : 2
+[black-box-02] "Note labels" checkboxes named "Personal rename target [team18-mwxg4gi7-w0-2]" : 2
+[black-box-02] sidebar buttons after reload: 2
+  ✘  1 keep-team18-extra.spec.ts:51:5 › black-box-02: renaming a label onto an existing name must not duplicate its accessible name (1.0s)
+[black-box-03] active element after clearing: search-input | panel count: 0
+  ✘  2 keep-team18-extra.spec.ts:87:5 › black-box-03: Suggested filters must be shown whenever Search has the focus (4.6s)
+[white-box-03] content in the reopened editor: "First paragraph\nSecond line"
+[white-box-03] content on the card after reopen + close + reload: "First paragraph\nSecond line"
+  ✘  3 keep-team18-extra.spec.ts:112:5 › white-box-03: a note whose content starts with a newline must keep it after reopening (406ms)
+[white-box-04] leftover search: "keyword that matches no note" | labeled note regions: 0 | current: true
+  ✘  4 keep-team18-extra.spec.ts:135:5 › white-box-04: selecting a label must list that label's notes despite a leftover search keyword (628ms)
+  1) keep-team18-extra.spec.ts:51:5 › black-box-02: renaming a label onto an existing name must not duplicate its accessible name
+    Error: the sidebar exposes one action per label name
+    expect(received).toBe(expected) // Object.is equality
+    Expected: 1
+    Received: 2
+      64 |   const sidebarCount = await sidebar(page).getByRole('button', { name: taken, exact: true }).count();
+      65 |   console.log('[black-box-02] sidebar buttons named', JSON.stringify(taken), ':', sidebarCount);
+    > 66 |   expect.soft(sidebarCount, 'the sidebar exposes one action per label name').toBe(1);
+         |                                                                              ^
+      67 |
+      68 |   const title = identity('Ambiguity probe');
+      69 |   await createNote(page, title, 'label name reuse');
+        at keep-team18-extra.spec.ts:66:78
+    Error: the label chooser exposes one checkbox per label name
+    expect(received).toBe(expected) // Object.is equality
+    Expected: 1
+    Received: 2
+      73 |   const boxCount = await chooser(page).getByRole('checkbox', { name: taken, exact: true }).count();
+      74 |   console.log('[black-box-02] "Note labels" checkboxes named', JSON.stringify(taken), ':', boxCount);
+    > 75 |   expect.soft(boxCount, 'the label chooser exposes one checkbox per label name').toBe(1);
+         |                                                                                  ^
+      76 |   await action(chooser(page), 'Done').click();
+      77 |
+      78 |   await page.reload();
+        at keep-team18-extra.spec.ts:75:82
+    Error: the duplicate is persisted, not a transient render
+    expect(received).toBe(expected) // Object.is equality
+    Expected: 1
+    Received: 2
+      79 |   const afterReload = await sidebar(page).getByRole('button', { name: taken, exact: true }).count();
+      80 |   console.log('[black-box-02] sidebar buttons after reload:', afterReload);
+    > 81 |   expect.soft(afterReload, 'the duplicate is persisted, not a transient render').toBe(1);
+         |                                                                                  ^
+      82 | });
+      83 |
+      84 | /* ------------------------------------------------------------------ */
+        at keep-team18-extra.spec.ts:81:82
+  2) keep-team18-extra.spec.ts:87:5 › black-box-03: Suggested filters must be shown whenever Search has the focus
+    Error: Suggested filters must be present in the focused, empty state
+    expect(locator).toBeVisible() failed
+    Locator: getByRole('region', { name: 'Suggested filters', exact: true })
+    Expected: visible
+    Timeout: 4000ms
+    Error: element(s) not found
+    Call log:
+      - Suggested filters must be present in the focused, empty state getByRole('region', { name: 'Suggested filters', exact: true }) with timeout 4000ms
+      - waiting for getByRole('region', { name: 'Suggested filters', exact: true })
+       99 |   console.log('[black-box-03] active element after clearing:', focused, '| panel count:', await panel.count());
+      100 |   expect.soft(focused, 'precondition: the search box keeps the focus').toBe('search-input');
+    > 101 |   await expect.soft(panel, 'Suggested filters must be present in the focused, empty state').toBeVisible();
+          |                                                                                             ^
+      102 |
+      103 |   // Control: the same state reached through a blur + refocus does show the panel.
+      104 |   await page.mouse.click(700, 700);
+        at keep-team18-extra.spec.ts:101:93
+  3) keep-team18-extra.spec.ts:112:5 › white-box-03: a note whose content starts with a newline must keep it after reopening
+    Error: the editor must show the stored content
+    expect(received).toBe(expected) // Object.is equality
+    - Expected  - 1
+    + Received  + 0
+    -
+      First paragraph
+      Second line
+      121 |   const inEditor = await editor(page).getByRole('textbox', { name: 'Content', exact: true }).inputValue();
+      122 |   console.log('[white-box-03] content in the reopened editor:', JSON.stringify(inEditor));
+    > 123 |   expect.soft(inEditor, 'the editor must show the stored content').toBe(content);
+          |                                                                    ^
+      124 |
+      125 |   await action(editor(page), 'Close').click();
+      126 |   await page.reload();
+        at keep-team18-extra.spec.ts:123:68
+    Error: closing the editor must not shorten the stored content
+    expect(received).toBe(expected) // Object.is equality
+    - Expected  - 1
+    + Received  + 0
+    -
+      First paragraph
+      Second line
+      127 |   const onCard = await note(page, title).locator('.note-content').textContent();
+      128 |   console.log('[white-box-03] content on the card after reopen + close + reload:', JSON.stringify(onCard));
+    > 129 |   expect.soft(onCard, 'closing the editor must not shorten the stored content').toBe(content);
+          |                                                                                 ^
+      130 | });
+      131 |
+      132 | /* ------------------------------------------------------------------ */
+        at keep-team18-extra.spec.ts:129:81
+  4) keep-team18-extra.spec.ts:135:5 › white-box-04: selecting a label must list that label's notes despite a leftover search keyword
+    Error: the label filter must list the notes assigned that label
+    expect(received).toBe(expected) // Object.is equality
+    Expected: 1
+    Received: 0
+      153 |   const visible = await note(page, labeled).count();
+      154 |   console.log('[white-box-04] leftover search:', JSON.stringify(leftover), '| labeled note regions:', visible, '| current:', await action(sidebar(page), label).getAttribute('aria-current'));
+    > 155 |   expect.soft(visible, 'the label filter must list the notes assigned that label').toBe(1);
+          |                                                                                    ^
+      156 |   await expect.soft(action(sidebar(page), label)).toHaveAttribute('aria-current', 'true');
+      157 | });
+      158 |
+        at keep-team18-extra.spec.ts:155:84
+  4 failed
+    keep-team18-extra.spec.ts:51:5 › black-box-02: renaming a label onto an existing name must not duplicate its accessible name
+    keep-team18-extra.spec.ts:87:5 › black-box-03: Suggested filters must be shown whenever Search has the focus
+    keep-team18-extra.spec.ts:112:5 › white-box-03: a note whose content starts with a newline must keep it after reopening
+    keep-team18-extra.spec.ts:135:5 › white-box-04: selecting a label must list that label's notes despite a leftover search keyword
