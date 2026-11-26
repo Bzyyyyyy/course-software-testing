@@ -1,0 +1,11 @@
+{
+  "name": "keep-team-18-fault-revealing-tests",
+  "private": true,
+  "description": "Playwright reproduction scripts for Team 18 (Keep) fault-revealing tests.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

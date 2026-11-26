@@ -1,0 +1,143 @@
+Running 3 tests using 1 worker
+[black-box-01] visible title: "STudy schedule [team18-mwx5o7hj-w0-1]"
+[black-box-01] title highlight: "ST"
+[black-box-01] content highlight: "ST"
+  ✘  1 keep-team18.spec.ts:40:5 › black-box-01: search must highlight the matched text without changing the note text (20.7s)
+[white-box-01] option value before click: false | after click (want true ): false
+[white-box-01] persisted value after Save + reload: false (want true )
+  ✘  2 keep-team18.spec.ts:75:5 › white-box-01: a toggled Settings option must survive Save while a colour palette is open (846ms)
+[white-box-02] pending status after Empty Trash: Note deleted
+[white-box-02] status after Undo: Action undone | restored note regions: 0
+  ✘  3 keep-team18.spec.ts:114:5 › white-box-02: Undo must not report "Action undone" after Empty Trash removed the note (1.2s)
+  1) keep-team18.spec.ts:40:5 › black-box-01: search must highlight the matched text without changing the note text
+    Error: expect(locator).toHaveText(expected) failed
+    Locator:  getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('button', { name: 'Open Study schedule [team18-mwx5o7hj-w0-1]', exact: true })
+    Expected: "Study schedule [team18-mwx5o7hj-w0-1]"
+    Received: "STudy schedule [team18-mwx5o7hj-w0-1]"
+    Timeout:  4000ms
+Call log:
+      - Expect "soft toHaveText" getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('button', { name: 'Open Study schedule [team18-mwx5o7hj-w0-1]', exact: true }) with timeout 4000ms
+      - waiting for getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('button', { name: 'Open Study schedule [team18-mwx5o7hj-w0-1]', exact: true })
+        12 × locator resolved to <button type="button" class="note-title-btn" data-action="open-note" data-note-id="note-mwx5o7kv-9sdvl5" aria-label="Open Study schedule [team18-mwx5o7hj-w0-1]">…</button>
+           - unexpected value "STudy schedule [team18-mwx5o7hj-w0-1]"
+      59 |
+      60 |   // The note keeps its own characters: "Study schedule" / "Read a Story".
+    > 61 |   await expect.soft(titleButton).toHaveText(titleMatch);
+         |                                  ^
+      62 |   await expect.soft(note(page, contentMatch).locator('.note-content')).toHaveText('Read a Story');
+      63 |   // The highlight fragment shows the matched text (case of the note), not the query.
+      64 |   await expect.soft(titleMark).toHaveText('St');
+        at keep-team18.spec.ts:61:34
+    Error: expect(locator).toHaveText(expected) failed
+    Locator:  getByRole('region', { name: 'Reading plan [team18-mwx5o7hj-w0-2]', exact: true }).locator('.note-content')
+    Expected: "Read a Story"
+    Received: "Read a STory"
+    Timeout:  4000ms
+Call log:
+      - Expect "soft toHaveText" getByRole('region', { name: 'Reading plan [team18-mwx5o7hj-w0-2]', exact: true }).locator('.note-content') with timeout 4000ms
+      - waiting for getByRole('region', { name: 'Reading plan [team18-mwx5o7hj-w0-2]', exact: true }).locator('.note-content')
+        12 × locator resolved to <div class="note-content">…</div>
+           - unexpected value "Read a STory"
+      60 |   // The note keeps its own characters: "Study schedule" / "Read a Story".
+      61 |   await expect.soft(titleButton).toHaveText(titleMatch);
+    > 62 |   await expect.soft(note(page, contentMatch).locator('.note-content')).toHaveText('Read a Story');
+         |                                                                        ^
+      63 |   // The highlight fragment shows the matched text (case of the note), not the query.
+      64 |   await expect.soft(titleMark).toHaveText('St');
+      65 |   await expect.soft(contentMark).toHaveText('St');
+        at keep-team18.spec.ts:62:72
+    Error: expect(locator).toHaveText(expected) failed
+    Locator:  getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('region', { name: 'Highlight ST', exact: true })
+    Expected: "St"
+    Received: "ST"
+    Timeout:  4000ms
+Call log:
+      - Expect "soft toHaveText" getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('region', { name: 'Highlight ST', exact: true }) with timeout 4000ms
+      - waiting for getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('region', { name: 'Highlight ST', exact: true })
+        12 × locator resolved to <mark role="region" class="highlight" aria-label="Highlight ST">ST</mark>
+           - unexpected value "ST"
+      62 |   await expect.soft(note(page, contentMatch).locator('.note-content')).toHaveText('Read a Story');
+      63 |   // The highlight fragment shows the matched text (case of the note), not the query.
+    > 64 |   await expect.soft(titleMark).toHaveText('St');
+         |                                ^
+      65 |   await expect.soft(contentMark).toHaveText('St');
+      66 |
+      67 |   // The corruption also survives a reload because the query is kept in private state.
+        at keep-team18.spec.ts:64:32
+    Error: expect(locator).toHaveText(expected) failed
+    Locator:  getByRole('region', { name: 'Reading plan [team18-mwx5o7hj-w0-2]', exact: true }).getByRole('region', { name: 'Highlight ST', exact: true })
+    Expected: "St"
+    Received: "ST"
+    Timeout:  4000ms
+Call log:
+      - Expect "soft toHaveText" getByRole('region', { name: 'Reading plan [team18-mwx5o7hj-w0-2]', exact: true }).getByRole('region', { name: 'Highlight ST', exact: true }) with timeout 4000ms
+      - waiting for getByRole('region', { name: 'Reading plan [team18-mwx5o7hj-w0-2]', exact: true }).getByRole('region', { name: 'Highlight ST', exact: true })
+        12 × locator resolved to <mark role="region" class="highlight" aria-label="Highlight ST">ST</mark>
+           - unexpected value "ST"
+      63 |   // The highlight fragment shows the matched text (case of the note), not the query.
+      64 |   await expect.soft(titleMark).toHaveText('St');
+    > 65 |   await expect.soft(contentMark).toHaveText('St');
+         |                                  ^
+      66 |
+      67 |   // The corruption also survives a reload because the query is kept in private state.
+      68 |   await page.reload();
+        at keep-team18.spec.ts:65:34
+    Error: expect(locator).toHaveText(expected) failed
+    Locator:  getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('button', { name: 'Open Study schedule [team18-mwx5o7hj-w0-1]', exact: true })
+    Expected: "Study schedule [team18-mwx5o7hj-w0-1]"
+    Received: "STudy schedule [team18-mwx5o7hj-w0-1]"
+    Timeout:  4000ms
+Call log:
+      - Expect "soft toHaveText" getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('button', { name: 'Open Study schedule [team18-mwx5o7hj-w0-1]', exact: true }) with timeout 4000ms
+      - waiting for getByRole('region', { name: 'Study schedule [team18-mwx5o7hj-w0-1]', exact: true }).getByRole('button', { name: 'Open Study schedule [team18-mwx5o7hj-w0-1]', exact: true })
+        12 × locator resolved to <button type="button" class="note-title-btn" data-action="open-note" data-note-id="note-mwx5o7kv-9sdvl5" aria-label="Open Study schedule [team18-mwx5o7hj-w0-1]">…</button>
+           - unexpected value "STudy schedule [team18-mwx5o7hj-w0-1]"
+      67 |   // The corruption also survives a reload because the query is kept in private state.
+      68 |   await page.reload();
+    > 69 |   await expect.soft(action(note(page, titleMatch), `Open ${titleMatch}`)).toHaveText(titleMatch);
+         |                                                                           ^
+      70 | });
+      71 |
+      72 | /* ------------------------------------------------------------------ */
+        at keep-team18.spec.ts:69:75
+  2) keep-team18.spec.ts:75:5 › white-box-01: a toggled Settings option must survive Save while a colour palette is open
+    Error: the checkbox reverted immediately after being toggled
+    expect(received).toBe(expected) // Object.is equality
+    Expected: true
+    Received: false
+       95 |   console.log('[white-box-01] option value before click:', saved, '| after click (want', wanted, '):', afterClick);
+       96 |   // Clicking the checkbox must leave it toggled for the following Save.
+    >  97 |   expect.soft(afterClick, 'the checkbox reverted immediately after being toggled').toBe(wanted);
+          |                                                                                    ^
+       98 |
+       99 |   await action(dialog, 'Save').click();
+      100 |   await expect(dialog).toBeHidden();
+        at keep-team18.spec.ts:97:84
+    Error: Save did not commit the toggled option
+    expect(received).toBe(expected) // Object.is equality
+    Expected: true
+    Received: false
+      105 |     .getByRole('checkbox', { name: 'Add new items to the bottom', exact: true }).isChecked();
+      106 |   console.log('[white-box-01] persisted value after Save + reload:', persisted, '(want', wanted, ')');
+    > 107 |   expect.soft(persisted, 'Save did not commit the toggled option').toBe(wanted);
+          |                                                                    ^
+      108 | });
+      109 |
+      110 | /* ------------------------------------------------------------------ */
+        at keep-team18.spec.ts:107:68
+  3) keep-team18.spec.ts:114:5 › white-box-02: Undo must not report "Action undone" after Empty Trash removed the note
+    Error: Undo reported "Action undone" but the note was not restored (regions: 0)
+    expect(received).toBe(expected) // Object.is equality
+    Expected: true
+    Received: false
+      142 |   // Either Undo restores the note (REQ-2.4) or it must not claim that the action was undone.
+      143 |   expect(restored === 1 || label !== 'Action undone',
+    > 144 |     `Undo reported "${label}" but the note was not restored (regions: ${restored})`).toBe(true);
+          |                                                                                      ^
+      145 | });
+      146 |
+        at keep-team18.spec.ts:144:86
+  3 failed
+    keep-team18.spec.ts:40:5 › black-box-01: search must highlight the matched text without changing the note text
+    keep-team18.spec.ts:75:5 › white-box-01: a toggled Settings option must survive Save while a colour palette is open
+    keep-team18.spec.ts:114:5 › white-box-02: Undo must not report "Action undone" after Empty Trash removed the note
