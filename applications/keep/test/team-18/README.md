@@ -8,8 +8,6 @@ Application under test: **Keep personal note management** (`applications/keep`),
 | --- | --- | --- |
 | YingYujie | [@Bzyyyyyy](https://github.com/Bzyyyyyy) | Leader, test design and automation |
 
-_Add the remaining team members here before merging._
-
 ## Submitted tests
 
 | ID | Type | Requirement | Fault exposed | Document |
