@@ -7,6 +7,8 @@ Application under test: **Keep personal note management** (`applications/keep`),
 | Member | Role |
 | --- | --- |
 | YingYujie | Leader, test design and automation |
+| Xiao Wenyang | Member |
+| Wang Haoyu | Member |
 
 All Team 18 submission files are in this directory (`applications/keep/test/team-18/`).
 
