@@ -46,7 +46,7 @@ async function createLabel(page: Page, label: string) {
 }
 
 /* ------------------------------------------------------------------ */
-/* black-box-02  REQ-3.1/3.2/2.8 — rename onto a name already in use  */
+/* black-box-02  REQ-3.2/2.8 — rename makes the {label} action ambiguous */
 /* ------------------------------------------------------------------ */
 test('black-box-02: renaming a label onto an existing name must not duplicate its accessible name', async ({ page }) => {
   await openHome(page);
