@@ -4,9 +4,11 @@ Application under test: **Keep personal note management** (`applications/keep`),
 
 ## Team members
 
-| Member | GitHub | Role |
-| --- | --- | --- |
-| YingYujie | [@Bzyyyyyy](https://github.com/Bzyyyyyy) | Leader, test design and automation |
+| Member | Role |
+| --- | --- |
+| YingYujie | Leader, test design and automation |
+
+All Team 18 submission files are in this directory (`applications/keep/test/team-18/`).
 
 ## Submitted tests
 
